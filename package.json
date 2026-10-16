@@ -1,0 +1,62 @@
+{
+  "name": "dsh-skin-deepsea-tui",
+  "version": "0.2.58",
+  "description": "深海终端：角色栏、终端窗口框线、蓝色消息卡片、实时 CPU 波形和可选 CRT 动效。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json",
+    "./skin.json": "./skin.json"
+  },
+  "files": [
+    "lib",
+    "theme.css",
+    "skin.json",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "assets",
+    "NOTICE.md",
+    "LICENSES",
+    "!assets/*-prompt.json",
+    "!assets/*-prompts.json"
+  ],
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "uiSession",
+        "connection"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh": "0.2.0-rc.2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node test.mjs && node test.mjs --windows && node test-persona.mjs && node test-welcome-story.mjs && node test-activity-wave.mjs && node test-popup-scope.mjs",
+    "preview": "node serve-preview.mjs",
+    "prepack": "npm run build && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeithTMaxwell/dsh-skin-deepsea-tui.git"
+  },
+  "homepage": "https://github.com/KeithTMaxwell/dsh-skin-deepsea-tui#readme",
+  "bugs": {
+    "url": "https://github.com/KeithTMaxwell/dsh-skin-deepsea-tui/issues"
+  }
+}

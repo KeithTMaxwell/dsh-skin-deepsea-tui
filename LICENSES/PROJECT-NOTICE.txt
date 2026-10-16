@@ -1,0 +1,4 @@
+Required Notice: Copyright (c) 2026 KeithTMaxwell. Project-specific modifications and additions to dsh-skin-deepsea-tui are offered under the PolyForm Noncommercial License 1.0.0.
+Required Notice: Upstream PV code and visual implementation: Copyright (c) 2026 MisakaZentai, MIT; see LICENSES/PV-MIT.txt and https://github.com/MisakaZentai/world-execute-me-dsh-pv.
+Required Notice: DSH preview styles: Copyright (c) 2026 DeepSeek, MIT; see LICENSES/DSH-MIT.txt and https://github.com/deepseek-ai/deepseek-harness.
+Third-party artwork retains its original terms; see NOTICE.md. This project does not relicense third-party works or revoke existing MIT grants.

@@ -1,0 +1,4 @@
+- insert:
+    - id: ui-skin-pv-deepsea
+      name: dsh-skin-deepsea-tui
+      disabled: true

@@ -1,0 +1,12 @@
+{
+  "id": "pv-deepsea",
+  "name": "深海终端",
+  "nameEn": "Deepsea Terminal",
+  "package": "dsh-skin-deepsea-tui",
+  "bodyAttr": "data-pv-deepsea",
+  "wiring": {
+    "id": "ui-skin-pv-deepsea"
+  },
+  "tagline": "大肥鱼陪伴的深海终端主题",
+  "order": 30
+}

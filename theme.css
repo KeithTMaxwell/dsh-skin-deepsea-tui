@@ -1,0 +1,678 @@
+/* PV palette + Desktop 0.2.0-rc.2 surfaces. */
+body[data-pv-deepsea] {
+  --dsw-alias-bg-base: #05080f !important;
+  --dsw-alias-bg-layer-1: #0b1120 !important;
+  --dsw-alias-bg-layer-2: #101a2e !important;
+  --dsw-alias-bg-layer-3: #15213a !important;
+  --dsw-alias-bg-module-platform: #0b1120 !important;
+  --dsw-alias-bg-overlay: #0d1528 !important;
+  --dsw-specific-bubble: #18233d !important;
+  --dsw-specific-bubble-highlight: #223052 !important;
+  --dsw-specific-input-major: #0d1528 !important;
+  --dsw-specific-selector: #1a2440 !important;
+  --dsw-specific-sidebar-fill: #070b14 !important;
+  --dsw-specific-sidebar-nav-item-active: #18233d !important;
+  --dsw-specific-sidebar-nav-item-active-accent: #18233d !important;
+  --dsw-specific-sidebar-nav-item-hover: #101a2e !important;
+  --dsw-specific-menu: #10182bf5 !important;
+  --dsw-menu-surface-fill: #10182bf5 !important;
+  --dsw-alias-border-l1: #1b2540 !important;
+  --dsw-alias-border-l2: #223052 !important;
+  --dsw-alias-border-l2-darkmode-thin: #223052 !important;
+  --dsw-alias-border-l3: #304266 !important;
+  --dsw-alias-border-l4: #40567e !important;
+  --dsw-alias-label-primary: #edf2ff !important;
+  --dsw-alias-label-secondary: #bdc9e0 !important;
+  --dsw-alias-label-tertiary: #8e9dbb !important;
+  --dsw-alias-label-caption: #8e9dbb !important;
+  --dsw-alias-label-dimmed: #71809f !important;
+  --dsw-alias-label-primary-dimmed: #aab8d4 !important;
+  --dsw-alias-label-primary-inverted: #05080f !important;
+  --dsw-alias-label-primary-foreground: #05080f !important;
+  --dsw-alias-brand-primary: #7d97ff !important;
+  --dsw-alias-brand-text: #9aafff !important;
+  --dsw-alias-link: #9aafff !important;
+  --dsw-alias-state-business-primary: #9aafff !important;
+  --dsw-alias-state-error-primary: #ff939e !important;
+  --dsw-alias-state-success-primary: #73d5a0 !important;
+  --dsw-alias-state-warn-primary: #e7c384 !important;
+  --dsw-alias-button-primary-fill: #87cefa !important;
+  --dsw-alias-button-primary-hover: #b0dfff !important;
+  --dsw-alias-button-primary-dimmed: #334967 !important;
+  --dsw-alias-button-info-fill: #87cefa !important;
+  --dsw-alias-button-info-hover: #b0dfff !important;
+  --dsw-alias-button-floating-fill: #15213a !important;
+  --dsw-alias-button-floating-hover: #223052 !important;
+  --dsw-alias-button-elevated-fill: #15213a !important;
+  --dsw-alias-interactive-bg-hover: #1a2440 !important;
+  --dsw-alias-interactive-bg-active: #223052 !important;
+  --dsw-alias-interactive-bg-hover-solid: #1a2440 !important;
+  --dsw-alias-interactive-bg-hover-accent: #223052 !important;
+  --dsw-alias-markdown-code-block: #0b1120 !important;
+  --dsw-alias-markdown-code-block-banner: #101a2e !important;
+  --dsw-alias-markdown-inline-code: #18233d !important;
+  --dsw-alias-toast-bg: #15213a !important;
+  --dsw-alias-toast-label: #edf2ff !important;
+  --dsw-alias-tooltip-bg: #223052 !important;
+  --dsw-alias-tooltip-label: #edf2ff !important;
+  --dsw-focus-ring-color: #9aafff !important;
+  --dsw-font-family: Consolas, Menlo, "SFMono-Regular", "Microsoft YaHei", "PingFang SC", monospace !important;
+  --ds-font-family-code: Consolas, Menlo, "SFMono-Regular", "Microsoft YaHei", "PingFang SC", monospace !important;
+  --dsw-font-family-brand: Consolas, Menlo, "SFMono-Regular", "Microsoft YaHei", "PingFang SC", monospace !important;
+}
+body[data-pv-deepsea] { --pv-stroke:#52627e; --pv-text:#e8efff; --pv-blue:#91cfff; --pv-state-color:#73d5a0; color-scheme:dark; color:var(--pv-text); background:#05080f; font-family:var(--dsw-font-family); }
+/* Native portaled surfaces: semantic/data hooks survive platform CSS hashes.
+   Preserve positioning, hit bridges, focus handling and toast expiry animations. */
+body[data-pv-deepsea] :is([data-menu-material],[role=dialog]:not(:has(>img)),[role=tooltip],[style*="--dsh-hover-preview-fade"],[role=alert][style*="--dsh-toast-hold"]) {
+  --dsw-alias-interactive-bg-hover:#1c2e4a;
+  --dsw-menu-surface-fill:#080e19; --dsw-menu-backdrop-filter:none;
+  box-sizing:border-box; border:1px solid var(--pv-stroke)!important; border-radius:0!important;
+  background:#080e19!important; color:var(--pv-text); backdrop-filter:none!important;
+  box-shadow:4px 4px 0 #02050bcc!important; font-family:var(--dsw-font-family);
+}
+body[data-pv-deepsea] [data-menu-backing] { border-radius:0!important; background:#080e19!important; }
+body[data-pv-deepsea] [data-menu-material]>[aria-hidden=true] { border-radius:0!important; background:#080e19!important; backdrop-filter:none!important; }
+/* Toggle tracks, radio buttons and checkboxes retain their native geometry. */
+body[data-pv-deepsea] :is([data-menu-material],[role=dialog]:not(:has(>img))) :is(button,input,textarea,select,[role=menuitem],[role=option]):not([role=switch]):not([role=checkbox]):not([role=radio]):not([type=checkbox]):not([type=radio]) { border-radius:0!important; }
+body[data-pv-deepsea] [data-menu-material] :is([role=menuitem],[role=option]):is(:hover,:focus-visible):not(:disabled):not([aria-disabled=true]) { box-shadow:inset 2px 0 var(--pv-blue); }
+body[data-pv-deepsea] [data-menu-material] [role=separator] { background:#304266!important; }
+body[data-pv-deepsea] [role=dialog]:not(:has(>img)) h2 { color:var(--pv-blue); letter-spacing:.04em; }
+body[data-pv-deepsea] [role=dialog]:not(:has(>img)) h2::before { content:'/ '; color:#8e9dbb; }
+body[data-pv-deepsea] [role=dialog]:not(:has(>img)) :is(input:not([type=checkbox]):not([type=radio]),textarea,select) { border-color:#52627e!important; background:#05080f!important; color:var(--pv-text); }
+body[data-pv-deepsea] :is([data-menu-material],[role=dialog]:not(:has(>img))) :is(button,input,textarea,select,[role=menuitem]):focus-visible { outline:1px solid var(--pv-blue)!important; outline-offset:2px; }
+body[data-pv-deepsea] :is(button,input,textarea,select) { font-family:var(--dsw-font-family); }
+body[data-pv-deepsea] [data-pv-part=frame] { box-sizing:border-box; padding:14px 12px 46px; grid-template-rows:minmax(0,1fr)!important; column-gap:0!important; row-gap:0; background:#05080f!important; min-height:0; }
+body[data-pv-deepsea] [data-pv-part=sidebar] { margin-right:12px; container-type:inline-size; container-name:pv-sidebar; }
+body[data-pv-deepsea] [data-pv-part=rightbar] { margin-left:12px; }
+/* The native right column is only a track; its absolute panel otherwise keeps
+   the pre-inset width and paints across the terminal frame and chat pane. */
+body[data-pv-deepsea] [data-pv-part=rightbar] :is(.irMxjq_panel,.OUqwTW_panel)[data-sidebar-right-panel=push] { left:0; right:0; top:20px; bottom:0; width:auto!important; }
+body[data-pv-deepsea] [data-pv-part=frame] :is(._6Qf49G_handle,.BynINW_handle) { top:var(--pv-handle-top,0px); bottom:var(--pv-handle-bottom,0px); transition:none!important; z-index:18; pointer-events:auto!important; user-select:none; }
+body[data-pv-deepsea] [data-pv-part=frame] :is(._6Qf49G_handle,.BynINW_handle)[data-side=sidebar] { left:var(--pv-sidebar-edge)!important; }
+body[data-pv-deepsea] [data-pv-part=frame] :is(._6Qf49G_handle,.BynINW_handle)[data-side=rightbar] { left:var(--pv-rightbar-edge)!important; }
+body[data-pv-deepsea][data-pv-statusbar=off] [data-pv-part=frame] { padding-bottom:12px; }
+body[data-pv-deepsea] :is([data-pv-part=sidebar],[data-pv-part=center],[data-pv-part=rightbar]) { box-sizing:border-box; position:relative; border:1px solid var(--pv-stroke)!important; border-radius:0!important; padding-top:20px; background:#05080f!important; background-image:none!important; box-shadow:none!important; }
+body[data-pv-deepsea] :is([data-pv-part=sidebar],[data-pv-part=center],[data-pv-part=rightbar])::before { position:absolute; left:12px; top:2px; z-index:15; padding:0 7px; color:#a5b5d0; font:12px/16px var(--dsw-font-family); letter-spacing:.08em; background:#05080f; pointer-events:none; }
+body[data-pv-deepsea] [data-pv-part=sidebar]::before { content:'/ sessions'; }
+body[data-pv-deepsea] [data-pv-part=center]::before { content:'/ dsh web'; }
+body[data-pv-deepsea] [data-pv-part=rightbar]::before { content:'/ workspace'; }
+body[data-pv-deepsea] :is([data-pv-part=sidebar],[data-pv-part=center],[data-pv-part=rightbar])::after { content:''; position:absolute; inset:0; z-index:14; pointer-events:none; background:linear-gradient(var(--pv-corner,#d0d9eb),var(--pv-corner,#d0d9eb)) 0 0/12px 2px no-repeat,linear-gradient(var(--pv-corner,#d0d9eb),var(--pv-corner,#d0d9eb)) 0 0/2px 12px no-repeat,linear-gradient(var(--pv-corner,#d0d9eb),var(--pv-corner,#d0d9eb)) 100% 0/12px 2px no-repeat,linear-gradient(var(--pv-corner,#d0d9eb),var(--pv-corner,#d0d9eb)) 100% 0/2px 12px no-repeat,linear-gradient(var(--pv-corner,#d0d9eb),var(--pv-corner,#d0d9eb)) 0 100%/12px 2px no-repeat,linear-gradient(var(--pv-corner,#d0d9eb),var(--pv-corner,#d0d9eb)) 0 100%/2px 12px no-repeat,linear-gradient(var(--pv-corner,#d0d9eb),var(--pv-corner,#d0d9eb)) 100% 100%/12px 2px no-repeat,linear-gradient(var(--pv-corner,#d0d9eb),var(--pv-corner,#d0d9eb)) 100% 100%/2px 12px no-repeat; }
+body[data-pv-deepsea] :is(._3WPZCG_root,._2H3hWW_root) { background:#070b14!important; background-image:none!important; padding:0 12px 6px; }
+body[data-pv-deepsea] [data-pv-part=sidebar] :is(._3WPZCG_root,._2H3hWW_root) { width:100%!important; min-width:0; }
+body[data-pv-deepsea] :is(._3WPZCG_topStrip,._2H3hWW_topStrip) { height:32px; margin:0 -12px; }
+body[data-pv-deepsea] :is(._3WPZCG_topStrip,._2H3hWW_topStrip)+:is(._3WPZCG_logoRow,._2H3hWW_logoRow) { margin-top:0; }
+/* Outrank the Windows titlebar's 40px logo row so the avatar fits below / sessions. */
+body[data-pv-deepsea] :is(._3WPZCG_root,._2H3hWW_root) :is(._3WPZCG_logoRow,._2H3hWW_logoRow) { height:84px; margin:0 0 14px; padding:8px 0 12px; border-bottom:1px solid #223052; }
+body[data-pv-deepsea] :is(._3WPZCG_brandIdentity,._2H3hWW_brandIdentity) { width:100%; height:auto; transform:none; }
+body[data-pv-deepsea] :is(._3WPZCG_brandIdentity,._2H3hWW_brandIdentity):has(.pv-brand)>:not(.pv-brand) { display:none!important; }
+.pv-brand { display:flex; align-items:center; gap:12px; min-width:0; }
+.pv-brand img { width:52px; height:52px; flex:none; border:1px solid #304266; border-radius:12px; box-shadow:0 0 20px #4d6bfe12; }
+.pv-brand>span { display:flex; flex-direction:column; gap:6px; }
+.pv-brand strong { color:#edf2ff; font-size:17px; font-weight:500; }
+.pv-brand small { font-size:9px; letter-spacing:.12em; color:#8e9dbb; white-space:nowrap; }
+@container pv-sidebar (max-width:230px) { .pv-brand { gap:8px; } .pv-brand img { width:40px; height:40px; } .pv-brand>span { min-width:0; } .pv-brand strong { font-size:15px; } .pv-brand small { font-size:8px; letter-spacing:0; white-space:normal; overflow-wrap:anywhere; } }
+body[data-pv-deepsea] :is(._3WPZCG_collapsed,._2H3hWW_collapsed) :is(._3WPZCG_logoRow,._2H3hWW_logoRow) { height:36px; padding:0; margin:0 0 12px; border:0; }
+body[data-pv-deepsea] :is(._3WPZCG_collapsed,._2H3hWW_collapsed) .pv-brand { display:none; }
+body[data-pv-deepsea] :is(._3WPZCG_newSession,._2H3hWW_newSession) { background:#14203a!important; border:1px solid #304266!important; box-shadow:none!important; border-radius:10px!important; }
+body[data-pv-deepsea] :is(._3WPZCG_newSession,._2H3hWW_newSession):hover { background:#203158!important; }
+body[data-pv-deepsea] :is(.ST7X_W_root,.Dc7zOa_root) { flex:1; min-height:0; height:auto; background:#05080f!important; }
+body[data-pv-deepsea] :is(.ST7X_W_header,.Dc7zOa_header) { background:#05080f!important; border-bottom:1px solid #223052; padding-inline:18px; min-height:64px; }
+body[data-pv-deepsea] :is(.ST7X_W_headerBlank,.Dc7zOa_headerBlank) { min-height:32px; padding-top:0; padding-bottom:0; border-bottom:0; }
+body[data-pv-deepsea] :is(.ST7X_W_titleRow,.Dc7zOa_titleRow) { font-size:13px; color:#9baecf; padding-inline-start:0; }
+body[data-pv-deepsea] :is(.ST7X_W_tabs,.Dc7zOa_tabs) { gap:24px; margin-top:6px; }
+body[data-pv-deepsea] [data-pv-part=center] { container-type:inline-size; container-name:pv-chat; }
+.pv-presence { box-sizing:border-box; display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:12px; flex:none; padding:12px 20px; min-height:80px; border-bottom:1px solid #223052; background:linear-gradient(90deg,#0a1020,#05080f); }
+body[data-pv-deepsea] [data-pv-part=frame]:not([data-sidebar-collapsed]) .pv-presence { display:none; }
+.pv-avatar { width:54px; height:54px; flex:none; border:1px solid #304266; border-radius:13px; background:#090e1e; object-fit:cover; }
+.pv-identity { min-width:0; display:flex; flex-direction:column; gap:7px; }
+.pv-identity>strong { color:#edf2ff; font-size:18px; font-weight:500; letter-spacing:.03em; }
+.pv-identity>span { display:grid; grid-template-columns:minmax(0,1fr); align-items:center; gap:3px; min-width:0; color:#8e9dbb; font-size:12px; line-height:18px; }
+.pv-state-line { display:flex; align-items:center; gap:4px; white-space:nowrap; }
+.pv-online { display:inline-block; width:6px; height:6px; flex:none; margin-right:3px; border-radius:50%; background:#73d5a0; box-shadow:0 0 7px #73d5a033; }
+.pv-model { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#b2c3e3; }
+.pv-model:empty { display:none; }
+.pv-signal { margin-left:auto; display:flex; flex-direction:column; align-items:flex-end; gap:4px; color:#778ba9; font-size:9px; letter-spacing:.12em; min-width:80px; }
+.pv-signal canvas { width:clamp(90px,16cqw,180px); height:24px; }
+@container pv-chat (max-width:640px) {
+  .pv-presence { grid-template-columns:auto minmax(0,1fr); }
+  .pv-signal { display:none; }
+}
+.pv-bottom { box-sizing:border-box; position:absolute; z-index:16; left:12px; right:12px; bottom:8px; height:28px; display:flex; gap:20px; align-items:center; padding:0 12px; border:1px solid var(--pv-stroke); background:#070b14; color:#8e9dbb; font:11px/1.4 var(--dsw-font-family); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.pv-log { margin-right:auto; color:#c5d3eb; letter-spacing:.08em; }
+.pv-bottom-state { color:#73d5a0; min-width:3em; }
+.pv-bottom-state::before { content:''; display:inline-block; width:5px; height:5px; margin-right:7px; background:var(--pv-state-color); box-shadow:0 0 7px color-mix(in srgb,var(--pv-state-color) 30%,transparent); }
+.pv-timer { color:#bdc9e0; }
+.pv-bottom time { color:#bdc9e0; min-width:8ch; }
+body[data-pv-deepsea][data-pv-state=等待] .pv-online { background:#e7c384; }
+body[data-pv-deepsea][data-pv-state=等待] { --pv-state-color:#e7c384; }
+body[data-pv-deepsea][data-pv-state=未连接] { --pv-state-color:#ff939e; }
+body[data-pv-deepsea][data-pv-state=未连接] :is(.pv-online,.pv-bottom-state::before) { background:#ff939e; box-shadow:none; }
+body[data-pv-deepsea][data-pv-state=未连接] :is(.pv-bottom-state,.pv-presence-state) { color:#ff939e; }
+body[data-pv-deepsea][data-pv-state=等待] .pv-bottom-state { color:#e7c384; }
+body[data-pv-deepsea] :is(:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) { background:#111d39!important; border:0!important; border-radius:22px!important; box-shadow:inset 0 0 0 1px #304266!important; }
+body[data-pv-deepsea] :is(:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card):focus-within { box-shadow:inset 0 0 0 1px #6384c1,0 0 16px #4d6bfe0c!important; }
+body[data-pv-deepsea] :is(:is(.IzP3Va_bubble,.cJsG2q_bubble),:is(.rcAy0q_bubble,.v1fjQa_bubble),:is(.Dh9Boq_bubble,.-ja1rG_bubble),.Sixlwa_bubble) { background:#1a294b!important; color:#edf2ff!important; border-radius:20px!important; box-shadow:inset 0 1px #9abaff0c; }
+body[data-pv-deepsea] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary) { background:#8bd2fa!important; color:#061020!important; box-shadow:0 0 14px #87cefa28; }
+body[data-pv-deepsea] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary):disabled { background:#263954!important; color:#768cab!important; box-shadow:none; }
+body[data-pv-deepsea] :is(.yhfFVG_add,.RlGAzG_add) { background:#203158!important; color:#dce8ff; }
+/* Keep one composer geometry before, during and after the first response. */
+body[data-pv-deepsea] :is(.yhfFVG_hero,.RlGAzG_hero) { padding:0 var(--dsh-composer-side-clearance) 4px; }
+body[data-pv-deepsea] :is(.yhfFVG_hero,.RlGAzG_hero) :is(.yhfFVG_input,.RlGAzG_input) { min-height:36px; }
+body[data-pv-deepsea] :is(.yhfFVG_hero,.RlGAzG_hero) :is(.yhfFVG_placeholder,.RlGAzG_placeholder) { display:block; white-space:nowrap; }
+body[data-pv-deepsea] :is(.yhfFVG_dock,.RlGAzG_dock) { box-sizing:border-box; min-height:28px; flex-shrink:0; }
+body[data-pv-deepsea] :is(.yhfFVG_hero,.RlGAzG_hero) :is(.yhfFVG_dock,.RlGAzG_dock):empty { display:flex; }
+/* Allocate the model selector the space remaining after the other controls,
+   instead of truncating it at the native 45% / 360px cap. */
+body[data-pv-deepsea] :is(.yhfFVG_row,.RlGAzG_row):not(:has(:is(.yhfFVG_trailingActive,.RlGAzG_trailingActive))) { flex-wrap:nowrap; }
+body[data-pv-deepsea] :is(.yhfFVG_tools,.RlGAzG_tools) { flex-shrink:0; }
+body[data-pv-deepsea] :is(.yhfFVG_trailing,.RlGAzG_trailing):not(:is(.yhfFVG_trailingActive,.RlGAzG_trailingActive)) { flex-shrink:1; min-width:0; }
+body[data-pv-deepsea] :is(.yhfFVG_standardControls,.RlGAzG_standardControls) { flex-shrink:1; min-width:0; }
+body[data-pv-deepsea] :is(.yhfFVG_row,.RlGAzG_row) :is(.cl2Rlq_trigger,.wq12jW_trigger) { max-width:none; flex:0 1 auto; min-width:0; }
+body[data-pv-deepsea] :is(:is(.yhfFVG_placeholder,.RlGAzG_placeholder),.uV2eYG_placeholder) { color:#8e9dbb; }
+body[data-pv-deepsea] pre { background:#0b1324!important; border:1px solid #223052; border-left:2px solid #577caa; border-radius:8px!important; }
+body[data-pv-deepsea] :is(.CY-8Ka_card,.o3BgMG_root,.lcKema_root) { color:#9eafcd; }
+body[data-pv-deepsea] ::selection { background:#4d6bfe66; color:#edf2ff; }
+body[data-pv-deepsea] :focus-visible { outline-color:#9aafff; }
+body[data-pv-deepsea] { scrollbar-color:#304266 #05080f; }
+/* The blank-session seat fills the available height; only its welcome scrolls. */
+body[data-pv-deepsea] :is(.ST7X_W_body,.Dc7zOa_body)[data-content-phase=hero] :is(.ST7X_W_scrollBody,.Dc7zOa_scrollBody) { justify-content:flex-start; overflow:hidden; }
+body[data-pv-deepsea] :is(.ST7X_W_body,.Dc7zOa_body)[data-content-phase=hero] :is(.ST7X_W_composerSeat,.Dc7zOa_composerSeat) { flex:1; min-height:0; }
+body[data-pv-deepsea] :is(.ST7X_W_composerHero,.Dc7zOa_composerHero) { flex:1; min-height:0; width:100%; padding-bottom:0; }
+body[data-pv-deepsea] :is(.ST7X_W_composerHero,.Dc7zOa_composerHero) > :is(.bocITq_root,.Hqq-bq_root) { box-sizing:border-box; flex:1 1 0; height:auto; min-height:0; overflow-y:auto; }
+body[data-pv-deepsea] :is(.ST7X_W_composerHero,.Dc7zOa_composerHero) > :not(:is(.bocITq_root,.Hqq-bq_root)) { flex-shrink:0; }
+body[data-pv-deepsea] :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) { width:min(100%,var(--dsh-composer-card-max-width)); box-sizing:border-box; align-self:center; }
+body[data-pv-deepsea] :is(.bocITq_root,.Hqq-bq_root):has(.pv-stage) { box-sizing:border-box; flex-direction:column; height:auto; min-height:0; justify-content:flex-start; gap:0; padding-block:18px; }
+body[data-pv-deepsea] :is(.ST7X_W_viewArea,.Dc7zOa_viewArea):has(.pv-stage) { flex:1 0 auto; min-height:auto; }
+body[data-pv-deepsea] :is(.ST7X_W_scrollBody,.Dc7zOa_scrollBody):has(.pv-stage) { justify-content:flex-start; }
+body[data-pv-deepsea] :is(.bocITq_root,.Hqq-bq_root):has(.pv-stage) :is(.bocITq_headline,.Hqq-bq_headline) { display:none; }
+.pv-stage { width:min(100%,440px); margin:auto; text-align:center; flex:none; color:#bdc9e0; padding:12px 0 24px; }
+.pv-stage-label { display:flex; align-items:center; gap:12px; color:#a5b5d0; font-size:11px; line-height:18px; padding-block:4px; letter-spacing:.08em; text-align:left; margin-bottom:10px; }
+.pv-stage-label::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,#52627e,transparent); }
+@media (min-height:721px) { body[data-pv-deepsea] [data-pv-part=frame][data-sidebar-collapsed]:has(.pv-presence) .pv-stage { width:min(100%,380px); } }
+.pv-portrait { aspect-ratio:27/16; position:relative; isolation:isolate; overflow:hidden; border:1px solid #40567e; border-radius:2px; background:#090e1e; box-shadow:0 0 32px #4d6bfe0c; }
+.pv-portrait::before { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(0deg,#05080fee,transparent 30%),linear-gradient(90deg,#05080f44,transparent 25%,transparent 75%,#05080f44); }
+/* Opaque, untransformed viewport covers the old image, including transparent
+   WebP margins. Alignment transforms stay inside each layer. */
+.pv-portrait-front,.pv-portrait-back { position:absolute; inset:0; overflow:hidden; background:#090e1e; }
+.pv-portrait-front { z-index:1; }
+.pv-portrait-back { z-index:0; display:none; }
+.pv-stage[data-welcome-phase=decode] .pv-portrait-back { display:block; }
+.pv-portrait img { display:block; width:100%; height:100%; position:absolute; inset:0; object-fit:cover; object-position:50% 0%; transform-origin:0 0; transform:translate(var(--pv-face-x,0%),var(--pv-face-y,0%)) scale(var(--pv-face-scale,1)); opacity:.92; filter:blur(.55px) saturate(.9) brightness(.96); }
+/* Align eye midpoint near (50%, 43.3%) in the 27:16 viewport.
+   Offsets are viewport-relative, so the framing also follows narrow layouts. */
+.pv-portrait img[data-expression=cheerful] { --pv-face-x:-2.25%; --pv-face-y:-1.8%; }
+.pv-portrait img[data-expression=serious] { --pv-face-x:-2.42%; --pv-face-y:.61%; --pv-face-scale:1.02; }
+.pv-portrait img[data-expression=starry] { --pv-face-x:-2.67%; --pv-face-y:-.54%; --pv-face-scale:.98; }
+.pv-portrait img[data-expression=shy] { --pv-face-x:.75%; --pv-face-y:-3.25%; }
+.pv-portrait img[data-expression=confused] { --pv-face-x:-1.39%; }
+.pv-portrait img[data-expression=exasperated] { --pv-face-x:-.78%; --pv-face-y:2.26%; --pv-face-scale:1.02; }
+/* Position the full source illustration before the roll cell crops it.
+   Auto height retains the original pixels below the frame; top/left keep
+   alignment offsets relative to the viewport, not the tall source image. */
+.pv-portrait img:is([data-expression=cheerful],[data-expression=serious],[data-expression=starry],[data-expression=shy],[data-expression=confused],[data-expression=exasperated],[data-expression=angry],[data-expression=frightened]) { height:auto; inset:var(--pv-face-y,0%) auto auto var(--pv-face-x,0%); transform:scale(var(--pv-face-scale,1)); }
+.pv-portrait>span { position:absolute; z-index:3; left:18px; bottom:14px; font-size:11px; letter-spacing:.12em; color:#c8e2ff; text-shadow:0 1px 8px #000; }
+.pv-portrait>span::before { content:'> '; color:#91cfff; }
+.pv-stage p { color:#edf2ff; font-size:23px; letter-spacing:.12em; margin:20px 0 7px; }
+.pv-stage small { font-size:13px; color:#8e9dbb; overflow-wrap:anywhere; }
+.pv-greeting { font-weight:400; }
+.pv-start-hints { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:18px; font-size:11px; color:#9eafcd; }
+.pv-start-hints>span { padding:5px 10px; border:1px solid #263954; background:#0b1324; }
+.pv-start-hints>span::before { content:'> '; color:#91cfff; }
+.pv-stage[data-pv-motif=grid] .pv-portrait::after { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:linear-gradient(#91cfff08 1px,transparent 1px),linear-gradient(90deg,#91cfff08 1px,transparent 1px); background-size:24px 24px; }
+.pv-stage[data-pv-motif=signal] .pv-portrait::after { content:''; position:absolute; inset:0; z-index:2; pointer-events:none; background:radial-gradient(circle,#91cfff30 .6px,transparent .8px) 0 0/12px 12px; opacity:.45; }
+.pv-deepsea-lines { position:fixed; inset:0; z-index:2147483646; pointer-events:none; background:repeating-linear-gradient(to bottom,transparent 0 2px,#00000012 2px 3px),radial-gradient(ellipse at 50% 45%,transparent 45%,#00000030 100%); }
+body[data-pv-deepsea][data-pv-motion=on] .pv-presence,body[data-pv-deepsea][data-pv-motion=on] .pv-stage { animation:pv-boot .55s ease-out both; }
+body[data-pv-deepsea][data-pv-motion=on] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary,:is(._3WPZCG_newSession,._2H3hWW_newSession)) { transition:background .18s,box-shadow .18s,transform .18s; }
+body[data-pv-deepsea][data-pv-motion=on] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary):hover:not(:disabled) { transform:translateY(-1px); box-shadow:0 0 18px #87cefa55; }
+body[data-pv-deepsea][data-pv-motion=on] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary):active:not(:disabled) { transform:translateY(1px); }
+body[data-pv-deepsea][data-pv-motion=on] .pv-cursor { animation:pv-caret 1.2s steps(1,end) infinite; }
+@keyframes pv-boot { from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)} }
+@keyframes pv-caret { 0%,45%{opacity:1}50%,95%{opacity:0} }
+@keyframes pv-breathe { 0%,100%{opacity:.5;box-shadow:0 0 2px #91cfff22}50%{opacity:1;box-shadow:0 0 12px #91cfff77} }
+.pv-presence { position:relative; }
+/* Keep code and reading surfaces quiet; reserve bloom for controls and chrome. */
+body[data-pv-deepsea] pre { box-shadow:inset 0 1px #c4d4ff08; scrollbar-width:thin; }
+body[data-pv-deepsea] pre code { text-shadow:none; }
+body[data-pv-deepsea] blockquote { border-left:2px solid #6384c1; background:#0b132480; color:#bdc9e0; }
+body[data-pv-deepsea] hr { border-color:#223052; }
+.pv-bottom { overflow:hidden; }
+.pv-log { min-width:0; overflow:hidden; text-overflow:ellipsis; }
+.pv-bottom>:not(.pv-log) { flex-shrink:0; }
+@media(max-width:400px) { .pv-bottom time{display:none} }
+@media(max-width:1024px) { body[data-pv-deepsea] [data-pv-part=frame]{padding:8px 8px 42px} body[data-pv-deepsea] [data-pv-part=sidebar]{margin-right:8px} body[data-pv-deepsea] [data-pv-part=rightbar]{margin-left:8px} .pv-bottom{left:8px;right:8px;gap:12px;font-size:10px} .pv-signal canvas{width:100px}.pv-brand{gap:8px}.pv-brand img{width:44px;height:44px} }
+@media(max-width:600px) { body[data-pv-deepsea] [data-pv-part=frame]{padding:6px 6px 40px} body[data-pv-deepsea] [data-pv-part=sidebar]{margin-right:4px} body[data-pv-deepsea] [data-pv-part=rightbar]{margin-left:4px} .pv-signal{display:none}.pv-bottom{left:6px;right:6px;padding:0 8px;gap:12px}.pv-turns,.pv-cpu{display:none}.pv-stage{width:min(100%,320px);padding-bottom:14px}.pv-stage p{margin-top:12px;font-size:20px} }
+@media(max-height:720px) { .pv-stage{width:min(100%,330px);padding-block:0 12px}.pv-stage p{font-size:19px;margin:10px 0 5px} }
+@media(prefers-reduced-motion:reduce) { body[data-pv-deepsea] *,body[data-pv-deepsea] *::before,body[data-pv-deepsea] *::after { animation:none!important;transition:none!important; } }
+@media(prefers-contrast:more) { .pv-deepsea-lines{display:none}body[data-pv-deepsea]{--pv-stroke:#8e9dbb} }
+/* Native macOS controls have their center at 25px; keep the whole row clear. */
+html[data-platform=darwin] body[data-pv-deepsea] { --pv-titlebar-height:44px; --pv-titlebar-button-top:11px; }
+html[data-platform=darwin][data-fullscreen] body[data-pv-deepsea] { --pv-titlebar-height:32px; --pv-titlebar-button-top:2px; }
+html[data-platform=darwin] body[data-pv-deepsea] [data-pv-part=frame] { padding-top:var(--pv-titlebar-height); }
+/* Keep the reserved title strip a native Electron window drag region. The
+   existing leading-seat buttons sit above it and retain their no-drag rule. */
+.pv-titlebar { display:none; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-titlebar { display:block; position:absolute; inset:0 0 auto; height:var(--pv-titlebar-height); z-index:2147483645; -webkit-app-region:drag; app-region:drag; }
+html[data-platform=darwin] body[data-pv-deepsea] :is(._6Qf49G_leadingSeat,.BynINW_leadingSeat) { z-index:2147483647; }
+.pv-sidebar-toggle { display:none; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-sidebar-toggle { display:flex; position:fixed; top:var(--pv-titlebar-button-top); width:28px; height:28px; padding:5px; align-items:center; justify-content:center; border:1px solid transparent; border-radius:4px; background:transparent; color:#9cb4d7; cursor:pointer; z-index:2147483647; -webkit-app-region:no-drag; app-region:no-drag; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-sidebar-toggle-left { left:88px; }
+html[data-platform=darwin][data-fullscreen] body[data-pv-deepsea] .pv-sidebar-toggle-left { left:12px; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-sidebar-toggle-right { right:12px; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-sidebar-toggle svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.25; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-sidebar-toggle[aria-expanded=true] { background:#15213a; border-color:#304266; color:#c1d9ff; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-sidebar-toggle:hover { background:#223454; border-color:#6383b4; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-sidebar-toggle:focus-visible { outline:1px solid #9acbff; outline-offset:1px; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-sidebar-toggle:disabled { opacity:.35; cursor:default; }
+html[data-platform=darwin] body[data-pv-deepsea] :is(:is(._3WPZCG_toggle,._2H3hWW_toggle), [data-sidebar-right-expand], [data-sidebar-right-toggle], :is(._6Qf49G_leadingSeat,.BynINW_leadingSeat) button:first-of-type) { display:none!important; }
+html[data-platform=darwin] body[data-pv-deepsea] :is(._3WPZCG_topStrip,._2H3hWW_topStrip) { height:0; padding:0; margin:0; }
+html[data-platform=darwin] body[data-pv-deepsea] :is(._6Qf49G_leadingSeat,.BynINW_leadingSeat) { top:var(--pv-titlebar-button-top); left:124px; }
+html[data-platform=darwin][data-fullscreen] body[data-pv-deepsea] :is(._6Qf49G_leadingSeat,.BynINW_leadingSeat) { left:48px; }
+html[data-platform=darwin] body[data-pv-deepsea] .pv-deepsea-lines { top:var(--pv-titlebar-height); }
+
+/* Windows keeps DSH's native caption/drag strip. Reserve its actual height,
+   and leave the three system caption buttons unobstructed on the right. */
+html[data-windows-titlebar] body[data-pv-deepsea] { --pv-titlebar-height:var(--dsh-windows-titlebar-height,40px); --pv-titlebar-button-top:calc((var(--pv-titlebar-height) - 28px)/2); }
+html[data-windows-titlebar][data-fullscreen] body[data-pv-deepsea] { --pv-titlebar-height:40px; }
+html[data-windows-titlebar] body[data-pv-deepsea] [data-pv-part=frame] { padding-top:var(--pv-titlebar-height); }
+html[data-windows-titlebar] body[data-pv-deepsea] .pv-sidebar-toggle { display:flex; position:fixed; top:var(--pv-titlebar-button-top); width:28px; height:28px; padding:5px; align-items:center; justify-content:center; border:1px solid transparent; border-radius:4px; background:transparent; color:#9cb4d7; cursor:pointer; z-index:2147483647; -webkit-app-region:no-drag; app-region:no-drag; }
+html[data-windows-titlebar] body[data-pv-deepsea] .pv-sidebar-toggle-left { left:12px; }
+html[data-windows-titlebar] body[data-pv-deepsea] .pv-sidebar-toggle-right { right:150px; }
+html[data-windows-titlebar][data-fullscreen] body[data-pv-deepsea] .pv-sidebar-toggle-right { right:12px; }
+html[data-windows-titlebar] body[data-pv-deepsea] .pv-sidebar-toggle svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.25; }
+html[data-windows-titlebar] body[data-pv-deepsea] .pv-sidebar-toggle[aria-expanded=true] { background:#15213a; border-color:#304266; color:#c1d9ff; }
+html[data-windows-titlebar] body[data-pv-deepsea] .pv-sidebar-toggle:hover { background:#223454; border-color:#6383b4; }
+html[data-windows-titlebar] body[data-pv-deepsea] .pv-sidebar-toggle:focus-visible { outline:1px solid #9acbff; outline-offset:1px; }
+html[data-windows-titlebar] body[data-pv-deepsea] .pv-sidebar-toggle:disabled { opacity:.35; cursor:default; }
+html[data-windows-titlebar] body[data-pv-deepsea] :is(:is(._3WPZCG_toggle,._2H3hWW_toggle),[data-sidebar-right-expand],[data-sidebar-right-toggle],:is(._6Qf49G_leadingSeat,.BynINW_leadingSeat) button:first-of-type) { display:none!important; }
+html[data-windows-titlebar] body[data-pv-deepsea] :is(._3WPZCG_topStrip,._2H3hWW_topStrip) { height:0; padding:0; margin:0; }
+html[data-windows-titlebar] body[data-pv-deepsea] :is(._6Qf49G_leadingSeat,.BynINW_leadingSeat) { top:var(--pv-titlebar-button-top); left:48px; z-index:2147483647; }
+html[data-windows-titlebar] body[data-pv-deepsea] .pv-deepsea-lines { top:var(--pv-titlebar-height); }
+
+
+/* Keep welcome text slots stable while deleting and decoding. */
+.pv-stage-label { min-height:18px; box-sizing:content-box; }
+.pv-stage>p { min-height:1.5em; line-height:1.5; }
+.pv-stage>small { display:block; min-height:3.2em; line-height:1.6; }
+.pv-start-hints>span { min-width:8em; min-height:1.5em; line-height:1.5; box-sizing:content-box; }
+.pv-stage[data-welcome-phase=decode]>.pv-stage-label { text-shadow:0 0 6px #a5b5d044; }
+
+/* Decorative interference is confined to the welcome card. */
+.pv-signal-glitch { display:none; position:absolute; inset:0; z-index:3; pointer-events:none; overflow:hidden; background:#090e1e; }
+.pv-signal-glitch::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent 12%,#71e5ee55 12% 24%,transparent 24% 74%,#de668444 74% 80%,transparent 80%); }
+
+/* Repeat the cropped viewport, not the full-height source illustration. */
+.pv-roll-track { position:absolute; inset:0; }
+.pv-roll-cell { position:absolute; inset:0; overflow:hidden; background:#090e1e; }
+.pv-roll-copy { transform:translateY(100%); }
+
+.pv-portrait img[data-expression=angry] { --pv-face-x:.96%; --pv-face-y:-5.42%; }
+.pv-portrait img[data-expression=frightened] { --pv-face-x:1.28%; }
+
+/* User-supplied transparent guest art shares the whale viewport and softening. */
+.pv-portrait img[data-expression=chatgpt] { --pv-face-x:2.5%; --pv-face-y:-.9%; }
+/* Claude guest illustrations are composed directly for the landscape viewport. */
+.pv-portrait img[data-expression=claude] { --pv-face-x:0%; --pv-face-y:0%; --pv-face-scale:1; }
+
+.pv-stage[data-persona-error]::after { content:attr(data-persona-error); display:block; margin-top:10px; font-size:12px; color:#e8bc82; }
+
+body[data-pv-deepsea] { --pv-fx-color:#a5b5d0; --pv-fx-rgb:165,181,208; }
+/* PV language: decode / execution / stdout. The overlay is
+   decorative, clipped to the chat pane, and never participates in layout. */
+.pv-fx { display:none; position:absolute; inset:0; z-index:13; pointer-events:none; user-select:none; overflow:hidden; color:var(--pv-fx-color); font:11px/1.6 var(--dsw-font-family); }
+body[data-pv-deepsea][data-pv-fx=未连接] { --pv-fx-color:#ff939e; --pv-fx-rgb:255,147,158; }
+body[data-pv-deepsea][data-pv-fx=settle] { --pv-fx-color:#b9d6f5; --pv-fx-rgb:185,214,245; }
+body[data-pv-deepsea]:is([data-pv-fx=等待],[data-pv-fx=未连接]) .pv-fx { display:block; }
+/* One stepped CRT reveal on mount and each greeting change. */
+body[data-pv-deepsea][data-pv-motion=on] .pv-portrait-front { animation:pv-materialize .85s steps(18,end) both; }
+@keyframes pv-materialize { from{clip-path:inset(0 0 100%)}to{clip-path:inset(0)} }
+body[data-pv-deepsea][data-pv-motion=on] .pv-portrait-front[data-reveal=b] { animation-name:pv-materialize-next; }
+@keyframes pv-materialize-next { from{clip-path:inset(0 0 100%)}to{clip-path:inset(0)} }
+body[data-pv-deepsea]:is([data-pv-fx=思考],[data-pv-fx=执行],[data-pv-fx=输出]) .pv-fx { display:block; }
+/* Keep status in the header; no decorative overlay inside the conversation. */
+.pv-fx-field { display:none; }
+body[data-pv-deepsea] [data-pv-part=center]:has(.pv-fx-hud)::before { content:none; }
+.pv-fx-hud { position:absolute; left:12px; top:2px; z-index:16; display:flex; align-items:center; gap:8px; max-width:calc(100% - 24px); padding:0 7px; height:16px; overflow:hidden; white-space:nowrap; background:#05080f; color:var(--pv-fx-color); font:12px/16px var(--dsw-font-family); pointer-events:none; }
+.pv-fx-command { width:15ch; min-width:0; overflow:hidden; text-overflow:ellipsis; }
+.pv-fx-spinner { width:1ch; flex:none; }
+.pv-log-brand { flex:none; }
+body[data-pv-fx=输出] .pv-fx-hud .pv-fx-command::after { content:'▍'; animation:pv-caret .8s steps(1,end) infinite; }
+@media(max-width:600px) { .pv-fx-hud{gap:5px;letter-spacing:0}.pv-fx-hud .pv-fx-command{width:13ch} }
+@media(prefers-reduced-motion:reduce) { .pv-fx{display:none!important} }
+
+/* Short signal faults can overlap the scan; transformations stay inside its viewport. */
+body[data-pv-motion=on] .pv-stage[data-glitch-slice] .pv-glitch-slice { display:block; clip-path:inset(32% 0 53%); animation:pv-signal-tear .6s steps(3,end) both; }
+body[data-pv-motion=on] .pv-stage[data-glitch-chroma] .pv-glitch-chroma { display:block; clip-path:inset(59% 0 32%); animation:pv-signal-tear .6s steps(3,end) both; }
+body[data-pv-motion=on] .pv-stage[data-glitch-text] :is(.pv-greeting,.pv-stage-label),body[data-pv-motion=on] .pv-stage[data-glitch-text]>:is(p,small) { animation:pv-text-noise .6s steps(3,end) both; }
+body[data-pv-motion=on] .pv-stage[data-glitch-sync] .pv-roll-track { animation:pv-sync-roll .6s linear both; }
+body[data-pv-motion=on] .pv-stage[data-glitch-sync] .pv-glitch-sync { display:block; mask-image:linear-gradient(transparent 23%,#000 23% 26%,transparent 26% 48%,#000 48% 53%,transparent 53% 74%,#000 74% 76%,transparent 76%); animation:pv-sync-lines .6s steps(4,end) both; }
+@keyframes pv-signal-tear { 0%{transform:translateX(10px);opacity:.95} 30%{transform:translateX(-8px);opacity:.85} 65%{transform:translateX(5px);opacity:.65} 100%{transform:none;opacity:0} }
+@keyframes pv-text-noise { 0%,35%{text-shadow:3px 0 #66d9eacc,-3px 0 #e17b96bb;translate:3px 0} 55%{text-shadow:-2px 0 #66d9eaaa;translate:-3px 1px} 75%{translate:1px -1px} 100%{text-shadow:none;translate:0 0} }
+/* One whole viewport rolls upward; its identical neighbour enters below.
+   End and start are visually identical, so removing the fault never snaps back. */
+@keyframes pv-sync-roll { from{transform:translateY(0)}to{transform:translateY(-100%)} }
+@keyframes pv-sync-lines { 0%{translate:8px 0;opacity:.95} 25%{translate:-11px 0;opacity:.85} 50%{translate:6px 0;opacity:.95} 75%{translate:-4px 0;opacity:.7} 100%{translate:0 0;opacity:0} }
+@media(prefers-reduced-motion:reduce) { .pv-signal-glitch{display:none!important} }
+
+/* Opt-in phosphor bloom. Keep filters off layout/portal ancestors so fixed
+   dialogs and menus retain their viewport positioning. No added flicker. */
+body[data-pv-deepsea][data-pv-crt=on] {
+  --pv-text:#f0f8ff;
+  --pv-stroke:#8eb6e5; --pv-blue:#b5e2ff;
+  --pv-state-color:#9af5c1; --pv-fx-color:#c5e3ff; --pv-fx-rgb:197,227,255;
+  --dsw-alias-label-primary:#f0f8ff!important;
+  --dsw-alias-label-secondary:#d4eaff!important;
+  --dsw-alias-label-tertiary:#b9dcff!important;
+  --dsw-alias-label-caption:#b9dcff!important;
+  --dsw-alias-label-dimmed:#97bde5!important;
+  --dsw-alias-label-primary-dimmed:#c5e3ff!important;
+  --dsw-alias-brand-text:#bfd3ff!important;
+  --dsw-alias-link:#bfd3ff!important;
+  --dsw-alias-brand-primary:#a8beff!important;
+  --dsw-alias-state-business-primary:#bfd3ff!important;
+  --dsw-alias-state-success-primary:#9af5c1!important;
+  --dsw-alias-state-warn-primary:#ffe0a4!important;
+  --dsw-alias-state-error-primary:#ffb5be!important;
+  --dsw-alias-border-l1:#3c5275!important;
+  --dsw-alias-border-l2:#4c668c!important;
+  --dsw-alias-border-l2-darkmode-thin:#4c668c!important;
+  --dsw-alias-border-l3:#6589b5!important;
+  --dsw-alias-border-l4:#8eb6e5!important;
+  --dsw-alias-tooltip-label:#f0f8ff!important;
+  --dsw-alias-toast-label:#f0f8ff!important;
+}
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-brand small,.pv-identity>span,.pv-bottom,.pv-stage-label,.pv-stage small,.pv-start-hints,.CY-8Ka_card,.o3BgMG_root,.lcKema_root) { color:#b9dcff; }
+body[data-pv-deepsea][data-pv-crt=on] :is([data-pv-part=sidebar],[data-pv-part=center],[data-pv-part=rightbar])::before { color:#c5e3ff; }
+body[data-pv-deepsea][data-pv-crt=on] :is(input,textarea,[contenteditable=true]) { color:#f0f8ff; caret-color:#b9dcff; }
+body[data-pv-deepsea][data-pv-crt=on] :is(:is(.yhfFVG_placeholder,.RlGAzG_placeholder),.uV2eYG_placeholder) { color:#c5e3ff; }
+body[data-pv-deepsea][data-pv-crt=on] :is(input,textarea)::placeholder { color:#c5e3ff; opacity:1; }
+body[data-pv-deepsea][data-pv-crt=on],
+body[data-pv-deepsea][data-pv-crt=on] :is(button,input,textarea,select,pre,code,[contenteditable=true],:is(.yhfFVG_placeholder,.RlGAzG_placeholder),.uV2eYG_placeholder,.pv-portrait>span) {
+  text-shadow:0 0 1px currentColor,0 0 3.5px #9acbff88,0 0 7px #6baaff38;
+}
+body[data-pv-deepsea][data-pv-crt=on] :is(svg,canvas) { filter:brightness(1.18) saturate(1.06) drop-shadow(0 0 1.5px #9acbff99); }
+/* Lift and gently clip highlights while retaining the source colours. */
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-avatar,.pv-brand img,.pv-roll-cell img) { opacity:1; filter:brightness(1.18) contrast(1.06) saturate(1.06) drop-shadow(0 0 2.5px #9acbff66); }
+/* The small sidebar portrait sits under the corner vignette: give it its own
+   exposure and bloom without changing the welcome illustration's treatment. */
+body[data-pv-deepsea][data-pv-crt=on] .pv-brand img { border-color:#b5e2ff; filter:brightness(1.32) contrast(1.06) saturate(1.08) drop-shadow(0 0 3.5px #b5e2ffaa); box-shadow:0 0 10px #9acbff55; }
+body[data-pv-deepsea][data-pv-crt=on] .pv-brand strong { color:#fff!important; text-shadow:0 0 1px currentColor,0 0 3.5px #9acbff88,0 0 7px #6baaff38; }
+/* Ordinary buttons keep icon bloom only; primary actions opt into shadows below. */
+body[data-pv-deepsea][data-pv-crt=on] :is([data-pv-part=sidebar],[data-pv-part=center],[data-pv-part=rightbar],[data-menu-material],[role=dialog]:not(:has(>img)),[role=tooltip],.pv-presence,.pv-bottom,.pv-portrait,input,textarea,select) {
+  box-shadow:0 0 2.5px #9acbff55,inset 0 0 2px #91cfff22!important;
+}
+body[data-pv-deepsea][data-pv-crt=on] .pv-deepsea-lines {
+  background:repeating-linear-gradient(to bottom,#b6d9ff0b 0 1px,transparent 1px 2.5px,#00000050 2.5px 4px),radial-gradient(ellipse at 50% 45%,transparent 35%,#00000055 100%);
+}
+@media(prefers-contrast:more) {
+  body[data-pv-deepsea][data-pv-crt=on],body[data-pv-deepsea][data-pv-crt=on] * { text-shadow:none!important; }
+}
+
+/* Full-access warning: colours from the world.execute(me) PV's red palette.
+   Match the permission dialog only; never change acknowledgement or actions. */
+body[data-pv-deepsea] [role=dialog][aria-modal=true]:not(:has(>img)):is([aria-label*="完全权限"],[aria-label*="full access" i]) {
+  --pv-blue:#e7c384; --pv-stroke:#e5484d;
+  --dsw-alias-label-primary:#ffe4df;
+  --dsw-alias-label-secondary:#e7c384;
+  --dsw-alias-state-warn-primary:#e7c384;
+  --dsw-alias-state-warn-label:#e7c384;
+  --dsw-alias-brand-primary:#e5484d;
+  --dsw-alias-interactive-bg-hover:#3a161c;
+  --dsw-alias-interactive-bg-active:#482026;
+  --dsw-alias-border-l3:#a65c50;
+  --dsw-focus-ring-color:#e7c384;
+  border-color:#e5484d!important; background:#210a0f!important;
+  color:#ffe4df; box-shadow:4px 4px 0 #120508!important;
+}
+body[data-pv-deepsea] [role=dialog][aria-modal=true]:not(:has(>img)):is([aria-label*="完全权限"],[aria-label*="full access" i]) :is(h2,p,label) { color:#e7c384!important; }
+body[data-pv-deepsea] [role=dialog][aria-modal=true]:not(:has(>img)):is([aria-label*="完全权限"],[aria-label*="full access" i]) h2::before { content:'▌ '; color:#e5484d!important; }
+body[data-pv-deepsea] [role=dialog][aria-modal=true]:not(:has(>img)):is([aria-label*="完全权限"],[aria-label*="full access" i]) input[type=checkbox] { accent-color:#e5484d; }
+body[data-pv-deepsea] [role=dialog][aria-modal=true]:not(:has(>img)):is([aria-label*="完全权限"],[aria-label*="full access" i]) button[class*="_confirmAction"] {
+  background:#e5484d!important; border-color:#e5484d!important; color:#fff!important;
+}
+body[data-pv-deepsea] [role=dialog][aria-modal=true]:not(:has(>img)):is([aria-label*="完全权限"],[aria-label*="full access" i]) button[class*="_confirmAction"]:hover:not(:disabled) { background:#ff6b6f!important; }
+body[data-pv-deepsea] [role=dialog][aria-modal=true]:not(:has(>img)):is([aria-label*="完全权限"],[aria-label*="full access" i]) button[class*="_confirmAction"]:disabled { opacity:.4; }
+
+/* Read the composer's current permission label, including on session changes.
+   The open confirmation alone must never turn the conversation red. */
+body[data-pv-deepsea]:not([data-pv-state=等待]):has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-part=center],:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) {
+  --pv-chat-color:#ff3b30; --pv-corner:#ff3b30; border-color:#ff3b30!important;
+}
+body[data-pv-deepsea] button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i]) { color:#ff6b6f!important; }
+body[data-pv-deepsea][data-pv-crt=on]:not([data-pv-state=等待]):has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-part=center],:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) { box-shadow:0 0 2.5px #ff3b3066,inset 0 0 2px #e5484d33!important; }
+
+body[data-pv-deepsea]:not([data-pv-state=等待]):has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is(:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) { box-shadow:inset 0 0 0 1px #ff3b30!important; }
+/* The composer has border:0; retain its inset outline underneath CRT bloom. */
+body[data-pv-deepsea][data-pv-crt=on]:not([data-pv-state=等待]):has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is(:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) { box-shadow:inset 0 0 0 1px #ff3b30,0 0 2.5px #ff3b3066,inset 0 0 2px #e5484d33!important; }
+
+/* Keep the read-only label distinct without recolouring the frame. */
+body[data-pv-deepsea] button:is([aria-label^="访问模式"]:is([aria-label*="仅可查看"],[aria-label*="只读"]),[aria-label*="access mode" i]:is([aria-label*="read only" i],[aria-label*="read-only" i])) { color:#73d5a0!important; }
+
+/* Colour transitions run in both directions; no travelling overlay. */
+@property --pv-corner { syntax:'<color>'; inherits:true; initial-value:#d0d9eb; }
+body[data-pv-deepsea][data-pv-motion=on] :is([data-pv-part=sidebar],[data-pv-part=center],[data-pv-part=rightbar],:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card,.pv-bottom) {
+  transition:border-color 650ms ease,box-shadow 650ms ease,--pv-corner 650ms ease;
+}
+body[data-pv-deepsea][data-pv-motion=on] :is([data-pv-part=sidebar],[data-pv-part=center],[data-pv-part=rightbar])::before {
+  transition:color 650ms ease,text-shadow 650ms ease;
+}
+body[data-pv-deepsea][data-pv-state=等待][data-pv-wait=approval] :is([data-pv-part=center],:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) {
+  --pv-wait-border:#ff3b30; --pv-wait-glow:#ff3b3066; --pv-wait-inset:#e5484d33;
+}
+/* Pending choices use amber; permission approvals use red, only on chat borders. */
+body[data-pv-deepsea][data-pv-state=等待] :is([data-pv-part=center],:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) {
+  --pv-wait-border:#e7c384; --pv-wait-glow:#e7c38466; --pv-wait-inset:#e7c38433;
+  --pv-chat-color:var(--pv-wait-border); --pv-corner:var(--pv-wait-border); border-color:var(--pv-wait-border)!important;
+}
+body[data-pv-deepsea][data-pv-state=等待] :is(:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) {
+  box-shadow:inset 0 0 0 1px var(--pv-wait-border)!important;
+}
+body[data-pv-deepsea][data-pv-crt=on][data-pv-state=等待] [data-pv-part=center] {
+  box-shadow:0 0 2.5px var(--pv-wait-glow),inset 0 0 2px var(--pv-wait-inset)!important;
+}
+@media(prefers-reduced-motion:reduce) {
+  body[data-pv-deepsea] :is([data-pv-part=sidebar],[data-pv-part=center],[data-pv-part=rightbar],:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card,.pv-bottom),
+  body[data-pv-deepsea] :is([data-pv-part=sidebar],[data-pv-part=center],[data-pv-part=rightbar])::before { transition:none!important; }
+}
+
+/* Full-access empty-session performance, isolated from actual shell output. */
+.pv-root-terminal { display:none; }
+body[data-pv-deepsea] .pv-stage[data-welcome-mode=terminal] { width:min(100%,720px)!important; text-align:left; }
+.pv-stage[data-welcome-mode=terminal]>:not(.pv-root-terminal) { display:none!important; }
+.pv-stage[data-welcome-mode=terminal]>.pv-root-terminal { display:block; }
+.pv-root-terminal { border:1px solid #e5484d; color:#e7c384; background:#10090f; box-shadow:inset 0 0 30px #e5484d08; }
+.pv-root-terminal header,.pv-root-terminal footer { display:flex; justify-content:space-between; gap:12px; padding:10px 14px; font-size:11px; letter-spacing:.07em; }
+.pv-root-terminal header { border-bottom:1px solid #72322c; color:#ff6b6f; }
+.pv-root-terminal header small { color:#aa9182; font-size:9px; }
+.pv-root-grid { display:grid; grid-template-columns:minmax(0,1fr) 175px; padding:16px 14px; gap:14px; overflow:hidden; }
+.pv-root-scene { font-size:10px; color:#aa9182; margin-bottom:12px; }
+.pv-root-terminal pre { margin:0; white-space:pre; font-family:var(--ds-font-family-code,monospace); font-variant-ligatures:none; letter-spacing:0; }
+body[data-pv-deepsea] .pv-root-terminal pre { background:transparent!important; border:0; border-radius:0!important; box-shadow:none; }
+body[data-pv-deepsea] .pv-root-terminal .pv-root-status { border-left:1px solid #58342b; }
+body[data-pv-deepsea] .pv-root-terminal .pv-root-log { border-block:1px solid #58342b; }
+.pv-root-art { font-size:clamp(5px,1.35cqi,12px); line-height:1.3; color:#e7c384; }
+.pv-root-status { font-size:10px; line-height:1.8; padding-left:12px; border-left:1px solid #58342b; color:#ff8a70; }
+.pv-root-log { border-block:1px solid #58342b; padding:12px 14px; height:120px; box-sizing:border-box; overflow:hidden; font-size:11px; line-height:16px; color:#b59d81; }
+.pv-root-line { display:block; height:16px; }
+.pv-root-line[data-danger=on] { color:#ff6b6f; }
+.pv-stage .pv-root-caption { padding:14px 14px 0; margin:0; color:#e7c384; font-size:14px; line-height:1.7; letter-spacing:.04em; }
+.pv-root-terminal footer { color:#ff6b6f; font-size:11px; }
+.pv-root-terminal footer span { color:#aa9182; }
+/* Local display damage only: clipped tears, no full-window flashing. */
+.pv-root-terminal { position:relative; overflow:hidden; }
+.pv-root-terminal[data-display-fault=broken]::after { content:''; position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(0deg,transparent 0 19px,#0009 19px 23px,transparent 23px 47px); }
+body[data-pv-motion=on] .pv-root-terminal[data-display-fault=broken] .pv-root-grid { animation:pv-terminal-tear 700ms steps(2,end) infinite; }
+.pv-root-terminal[data-display-fault=broken] :is(header,.pv-root-caption) { transform:translateX(7px) skewX(-3deg); text-shadow:-3px 0 #73d5a080,3px 0 #b393ff80; }
+.pv-root-terminal[data-display-fault=broken] .pv-root-status { transform:translateY(9px); }
+.pv-root-terminal[data-display-fault=broken] .pv-root-line:nth-child(odd) { transform:translateX(-12px); }
+.pv-root-terminal[data-display-fault=broken] .pv-root-line:nth-child(even) { transform:translateX(16px); }
+.pv-root-terminal[data-fault=recovering] .pv-root-grid { opacity:.8; }
+.pv-root-terminal[data-display-fault=broken][data-fault-variant=mirror] .pv-root-grid { scale:-1 1; }
+.pv-root-terminal[data-display-fault=broken][data-fault-variant=rain] .pv-root-status { writing-mode:vertical-rl; max-height:190px; overflow:hidden; }
+.pv-root-terminal[data-display-fault=broken][data-fault-variant=blocks]::after { background:repeating-linear-gradient(90deg,transparent 0 61px,#000b 61px 84px); }
+.pv-root-grid { position:relative; }
+.pv-root-terminal[data-fault=panic] .pv-root-grid::after { content:'F A T A L   E R R O R'; position:absolute; z-index:3; left:50%; top:50%; transform:translate(-50%,-50%); padding:14px 18px; border:1px solid #ff6b6f; background:#19090cf0; color:#ff6b6f; font:14px/1.5 var(--ds-font-family-code,monospace); white-space:nowrap; }
+.pv-root-terminal:is([data-fault=panic],[data-fault=blackout]) .pv-root-caption { visibility:hidden; }
+body[data-pv-motion=on] .pv-root-terminal:is([data-fault=panic],[data-fault=blackout]) .pv-root-grid { animation-play-state:paused; }
+.pv-root-terminal[data-fault=blackout] { background:#020305; border-color:#382d33; }
+.pv-root-terminal[data-fault=blackout] :is(header,footer,.pv-root-scene,.pv-root-status,.pv-root-log,.pv-root-caption) { visibility:hidden; }
+.pv-root-screen { transform-origin:center; }
+body[data-pv-motion=on] .pv-root-terminal[data-power=starting] .pv-root-screen { animation:pv-monitor-on 1500ms ease-out both; }
+body[data-pv-motion=on] .pv-root-terminal[data-power=stopping] .pv-root-screen { animation:pv-monitor-off 2100ms ease-in both; }
+.pv-root-terminal[data-power=off] .pv-root-screen { opacity:0; }
+.pv-root-terminal:is([data-power=starting],[data-power=stopping])::before { content:''; position:absolute; z-index:4; pointer-events:none; left:0; top:50%; width:100%; height:3px; background:#fff3d9; box-shadow:0 0 8px #fff3d9,0 0 20px #e7c384; transform-origin:center; }
+.pv-root-terminal[data-power=starting]::before { animation:pv-monitor-beam-on 1500ms ease-out both; }
+.pv-root-terminal[data-power=stopping]::before { animation:pv-monitor-beam-off 2100ms ease-in both; }
+@keyframes pv-monitor-on { 0%,40%{transform:scale(1,.003);opacity:0} 45%{transform:scale(1,.003);opacity:1} 100%{transform:scale(1);opacity:1} }
+@keyframes pv-monitor-off { 0%{transform:scale(1);opacity:1} 45%{transform:scale(1,.003);opacity:1} 50%,100%{transform:scale(1,.003);opacity:0} }
+@keyframes pv-monitor-beam-on { 0%{transform:scaleX(.005);opacity:0} 12%,20%{transform:scaleX(.005);opacity:1} 45%{transform:scaleX(1);opacity:1} 65%,100%{transform:scaleX(1);opacity:0} }
+@keyframes pv-monitor-beam-off { 0%,35%{transform:scaleX(1);opacity:0} 45%,50%{transform:scaleX(1);opacity:1} 78%,85%{transform:scaleX(.005);opacity:1} 100%{transform:scaleX(.005);opacity:0} }
+@media(prefers-reduced-motion:reduce) { .pv-root-terminal::before { display:none!important; } }
+@keyframes pv-terminal-tear { 0%,100% { transform:translateX(-7px); clip-path:polygon(0 0,100% 0,100% 37%,8% 37%,8% 43%,100% 43%,100% 100%,0 100%); } 50% { transform:translateX(9px); clip-path:polygon(0 0,100% 0,100% 66%,0 66%,0 72%,100% 72%,100% 100%,0 100%); } }
+@container pv-chat (max-width:560px) {
+  .pv-root-grid { grid-template-columns:minmax(0,1fr); }
+  .pv-root-status { display:none; }
+  .pv-root-art { font-size:clamp(5px,1.65cqi,11px); }
+  .pv-root-log { font-size:clamp(7px,2cqi,11px); }
+  .pv-root-terminal header { flex-wrap:wrap; }
+}
+
+/* Keep the chat title in sync with the border, without tinting other panels. */
+body[data-pv-deepsea] [data-pv-part=center] :is(.pv-fx-hud) { color:var(--pv-chat-color,#a5b5d0); }
+body[data-pv-deepsea][data-pv-motion=on] .pv-fx-hud { transition:color 650ms ease; }
+@media(prefers-reduced-motion:reduce) { body[data-pv-deepsea] .pv-fx-hud { transition:none!important; } }
+
+/* Composer takeovers: stable data hooks also cover platform-specific builds. */
+body[data-pv-deepsea] [data-approval-key] {
+  --pv-panel-border:#e7c384; --pv-panel-accent:#91cfff; --pv-panel-fill:#080e19; --pv-panel-hover:#1c2e4a;
+  --dsw-alias-brand-primary:var(--pv-panel-accent);
+  --dsw-alias-label-primary:#e8efff; --dsw-alias-label-secondary:#b6c7df;
+  --dsw-alias-state-warn-primary:#e7c384; --dsw-alias-state-warn-label:#e7c384;
+  --dsw-alias-interactive-bg-hover:var(--pv-panel-hover);
+}
+body[data-pv-deepsea] [data-approval-key] {
+  --pv-panel-border:#ff3b30; --pv-panel-accent:#e7c384; --pv-panel-fill:#210a0f; --pv-panel-hover:#3a161c;
+  --dsw-alias-brand-primary:#e5484d; --dsw-alias-label-secondary:#e7c384;
+}
+body[data-pv-deepsea] [data-approval-key] > div {
+  border:1px solid var(--pv-panel-border)!important; border-radius:0!important;
+  background:var(--pv-panel-fill)!important; color:#e8efff; box-shadow:4px 4px 0 #02050bcc!important;
+}
+body[data-pv-deepsea] [data-approval-key] :is([class*="_strip"],[class*="_title"],[class*="_eyebrow"],[class*="_headline"]) { color:#e7c384!important; }
+body[data-pv-deepsea] [data-approval-key] :is(button,textarea,input:not([type=checkbox]):not([type=radio])) { border-radius:0!important; }
+body[data-pv-deepsea] [data-approval-key] [class*="_actionRow"] button {
+  border:1px solid #e7c384!important; color:#e7c384!important; background:#210a0f!important;
+}
+body[data-pv-deepsea] [data-approval-key] [class*="_actionRow"] button:last-child { background:#e5484d!important; border-color:#e5484d!important; color:#fff!important; }
+body[data-pv-deepsea] [data-approval-key] button:hover:not(:disabled) { filter:brightness(1.15); }
+body[data-pv-deepsea] [data-approval-key] :is(button,input,textarea):focus-visible { outline:2px solid var(--pv-panel-accent)!important; outline-offset:2px; }
+body[data-pv-deepsea] [data-approval-key] button:disabled { opacity:.4; }
+
+/* Questions and plan choices retain the base palette; only the outer border is amber.
+   Their native cards are sections, unlike the approval card's div. */
+body[data-pv-deepsea] :is([data-question-key],[data-plan-review-key]) > section {
+  border:1px solid #e7c384!important; border-radius:0!important;
+  background:#080e19!important; color:var(--pv-text); box-shadow:4px 4px 0 #02050bcc!important;
+}
+body[data-pv-deepsea] :is([data-question-key],[data-plan-review-key]) :is(button,textarea,input:not([type=checkbox]):not([type=radio]),[class*="_customBlock"],[class*="_customInline"],[class*="_customRow"],[class*="_field"],[class*="_badge"]) { border-radius:0!important; }
+body[data-pv-deepsea] :is([data-question-key],[data-plan-review-key]) :is(button,input,textarea):focus-visible { outline:2px solid var(--pv-blue)!important; outline-offset:2px; }
+
+/* Finish the opt-in palette for surfaces with explicit colours. Preserve
+   semantic red/amber/green and disabled opacity; never filter portal ancestors. */
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-model,.pv-log,.pv-timer,.pv-bottom time,.pv-portrait>span,blockquote) { color:#d4eaff; }
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-signal,:is(.ST7X_W_titleRow,.Dc7zOa_titleRow)) { color:#b9dcff; }
+html body[data-pv-deepsea][data-pv-crt=on] .pv-sidebar-toggle { color:#d4eaff; border-color:#6589b5; }
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-brand strong,.pv-identity>strong,.pv-stage p) { color:#f0f8ff; }
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-portrait,.pv-avatar) { border-color:#8eb6e5; }
+body[data-pv-deepsea][data-pv-crt=on] hr { border-color:#4c668c; }
+body[data-pv-deepsea][data-pv-crt=on] { scrollbar-color:#6589b5 #05080f; }
+body[data-pv-deepsea][data-pv-crt=on] [role=dialog] :is(input:not([type=checkbox]):not([type=radio]),textarea,select) { border-color:#8eb6e5!important; }
+body[data-pv-deepsea][data-pv-crt=on] [role=dialog] h2::before { color:#b9dcff; }
+body[data-pv-deepsea][data-pv-crt=on] .pv-bottom-state { color:var(--pv-state-color); }
+body[data-pv-deepsea][data-pv-crt=on][data-pv-state=等待] { --pv-state-color:#ffe0a4; }
+body[data-pv-deepsea][data-pv-crt=on][data-pv-state=未连接] { --pv-state-color:#ffb5be; }
+body[data-pv-deepsea][data-pv-crt=on]:is([data-pv-state=等待],[data-pv-state=未连接]) .pv-online { background:var(--pv-state-color); }
+body[data-pv-deepsea][data-pv-crt=on][data-pv-state=未连接] .pv-presence-state { color:#ffb5be; }
+body[data-pv-deepsea][data-pv-crt=on] [data-pv-part=center] .pv-fx-hud { color:color-mix(in srgb,var(--pv-chat-color,#a5b5d0) 70%,white); }
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-root-terminal header small,.pv-root-scene,.pv-root-log,.pv-root-terminal footer span) { color:#f2d6b4; }
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-root-art,.pv-stage .pv-root-caption) { color:#ffe0a4; }
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-root-terminal header,.pv-root-terminal footer,.pv-root-line[data-danger=on]) { color:#ffaaa6; }
+body[data-pv-deepsea][data-pv-crt=on] .pv-root-status { color:#ffba9f; }
+body[data-pv-deepsea][data-pv-crt=on] :is(.pv-root-terminal header,.pv-root-status,.pv-root-log) { border-color:#a65c50; }
+body[data-pv-deepsea][data-pv-crt=on] [data-approval-key] :is([class*="_strip"],[class*="_title"],[class*="_eyebrow"],[class*="_headline"]) { color:#ffe0a4!important; }
+body[data-pv-deepsea][data-pv-crt=on] [data-approval-key] [class*="_actionRow"] button:not(:last-child) { color:#ffe0a4!important; border-color:#ffe0a4!important; }
+body[data-pv-deepsea][data-pv-crt=on] [role=dialog][aria-modal=true]:is([aria-label*="完全权限"],[aria-label*="full access" i]) :is(h2,p,label) { color:#ffe0a4!important; }
+body[data-pv-deepsea][data-pv-crt=on] [role=dialog][aria-modal=true]:is([aria-label*="完全权限"],[aria-label*="full access" i]) button { text-shadow:0 0 1px currentColor,0 0 3.5px #e7c38488,0 0 7px #e7c38438; }
+body[data-pv-deepsea][data-pv-crt=on] [role=dialog][aria-modal=true]:is([aria-label*="完全权限"],[aria-label*="full access" i]) svg { filter:brightness(1.18) saturate(1.06) drop-shadow(0 0 1.5px #e7c38499); }
+
+/* Primary action bloom follows the button's own palette. */
+body[data-pv-deepsea][data-pv-crt=on] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary) { --pv-action-glow:#8bd2fa; }
+body[data-pv-deepsea][data-pv-crt=on] [data-approval-key] [class*="_actionRow"] button { --pv-action-glow:#ffe0a4; }
+body[data-pv-deepsea][data-pv-crt=on] [data-approval-key] [class*="_actionRow"] button:last-child,
+body[data-pv-deepsea][data-pv-crt=on] [role=dialog][aria-modal=true]:is([aria-label*="完全权限"],[aria-label*="full access" i]) button[class*="_confirmAction"] { --pv-action-glow:#ff6b6f; }
+body[data-pv-deepsea][data-pv-crt=on] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary,[data-approval-key] [class*="_actionRow"] button,[role=dialog][aria-modal=true]:is([aria-label*="完全权限"],[aria-label*="full access" i]) button[class*="_confirmAction"]) {
+  box-shadow:0 0 4px color-mix(in srgb,var(--pv-action-glow) 75%,transparent),0 0 12px color-mix(in srgb,var(--pv-action-glow) 45%,transparent),inset 0 0 3px color-mix(in srgb,var(--pv-action-glow) 40%,transparent)!important;
+}
+body[data-pv-deepsea][data-pv-crt=on] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary,[data-approval-key] [class*="_actionRow"] button,[role=dialog][aria-modal=true]:is([aria-label*="完全权限"],[aria-label*="full access" i]) button[class*="_confirmAction"]):is(:disabled,[aria-disabled=true]) {
+  box-shadow:0 0 2px color-mix(in srgb,var(--pv-action-glow) 20%,transparent)!important;
+}
+
+/* Full-access palette follows the active composer, including portaled UI.
+   Keep semantic success/error colours and waiting borders independent. */
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-part=center],[data-pv-chat-popup]:not([data-menu-backing]):not(:has(>img))) {
+  --pv-text:#ffe4df; --pv-blue:var(--pv-access-accent); --pv-stroke:#ff3b30;
+  --pv-access-accent:#e7c384; --pv-access-muted:#c5a58c;
+  --dsw-alias-bg-base:#12090c; --dsw-alias-bg-layer-1:#1a0d11; --dsw-alias-bg-layer-2:#210f14; --dsw-alias-bg-layer-3:#30161c;
+  --dsw-alias-bg-module-platform:#1a0d11; --dsw-alias-bg-overlay:#210f14;
+  --dsw-alias-label-primary:var(--pv-text); --dsw-alias-label-secondary:#f2d6b4;
+  --dsw-alias-label-tertiary:var(--pv-access-muted); --dsw-alias-label-caption:var(--pv-access-muted);
+  --dsw-alias-label-dimmed:#987b70; --dsw-alias-label-primary-dimmed:var(--pv-access-muted);
+  --dsw-alias-brand-primary:var(--pv-access-accent); --dsw-alias-brand-text:var(--pv-access-accent);
+  --dsw-alias-link:var(--pv-access-accent); --dsw-alias-state-business-primary:var(--pv-access-accent);
+  --dsw-alias-border-l1:#422026; --dsw-alias-border-l2:#60302f; --dsw-alias-border-l2-darkmode-thin:#60302f; --dsw-alias-border-l3:#8d4038; --dsw-alias-border-l4:#ff3b30;
+  --dsw-alias-button-primary-fill:var(--pv-access-accent); --dsw-alias-button-primary-hover:#ffe0a4; --dsw-alias-button-primary-dimmed:#50332b;
+  --dsw-alias-button-info-fill:var(--pv-access-accent); --dsw-alias-button-info-hover:#ffe0a4;
+  --dsw-alias-button-floating-fill:#30161c; --dsw-alias-button-floating-hover:#482026; --dsw-alias-button-elevated-fill:#30161c;
+  --dsw-alias-interactive-bg-hover:#3a161c; --dsw-alias-interactive-bg-active:#482026; --dsw-alias-interactive-bg-hover-solid:#3a161c; --dsw-alias-interactive-bg-hover-accent:#482026;
+  --dsw-specific-bubble:#30161c; --dsw-specific-bubble-highlight:#482026; --dsw-specific-input-major:#210f14; --dsw-specific-selector:#30161c;
+  --dsw-specific-menu:#210a0f; --dsw-menu-surface-fill:#210a0f;
+  --dsw-alias-markdown-code-block:#1a0d11; --dsw-alias-markdown-code-block-banner:#30161c; --dsw-alias-markdown-inline-code:#30161c;
+  --dsw-alias-toast-bg:#210a0f; --dsw-alias-toast-label:var(--pv-text); --dsw-alias-tooltip-bg:#210a0f; --dsw-alias-tooltip-label:var(--pv-text);
+  --dsw-focus-ring-color:var(--pv-access-accent);
+  color:var(--pv-text); scrollbar-color:#8d4038 #12090c;
+ }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] { background:#12090c!important; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is(:is(.ST7X_W_root,.Dc7zOa_root),:is(.ST7X_W_header,.Dc7zOa_header)) { background:#12090c!important; border-color:#60302f; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center]::before { background:#12090c; color:var(--pv-access-accent); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is(:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) { background:#210f14!important; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is(:is(.IzP3Va_bubble,.cJsG2q_bubble),:is(.rcAy0q_bubble,.v1fjQa_bubble),:is(.Dh9Boq_bubble,.-ja1rG_bubble),.Sixlwa_bubble) { background:#30161c!important; color:var(--pv-text)!important; box-shadow:inset 0 1px #e7c38422; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary) { background:var(--pv-access-accent)!important; color:#210a0f!important; --pv-action-glow:var(--pv-access-accent); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is(:is(.yhfFVG_primary,.RlGAzG_primary),.uV2eYG_primary):disabled { background:#50332b!important; color:#a08070!important; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is(.yhfFVG_add,.RlGAzG_add) { background:#3a161c!important; color:var(--pv-access-accent); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is(:is(.ST7X_W_titleRow,.Dc7zOa_titleRow),:is(.yhfFVG_placeholder,.RlGAzG_placeholder),.uV2eYG_placeholder,.CY-8Ka_card,.o3BgMG_root,.lcKema_root) { color:var(--pv-access-muted); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-part=center],[data-pv-chat-popup]:not([data-menu-backing]):not(:has(>img))) :is(input,textarea,[contenteditable=true]) { color:var(--pv-text); caret-color:var(--pv-access-accent); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-part=center],[data-pv-chat-popup]:not([data-menu-backing]):not(:has(>img))) :is(input,textarea)::placeholder { color:var(--pv-access-muted); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] pre { background:#1a0d11!important; border-color:#60302f; border-left-color:var(--pv-access-accent); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] blockquote { color:#f2d6b4; border-color:var(--pv-access-accent); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-chat-popup]:not([data-menu-backing]):not(:has(>img))) { background:#210a0f!important; border-color:#ff3b30!important; box-shadow:4px 4px 0 #120508!important; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-menu-backing][data-pv-chat-popup],[data-menu-material][data-pv-chat-popup]>[aria-hidden=true]) { background:#210a0f!important; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-menu-material][data-pv-chat-popup] [role=separator] { background:#60302f!important; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [role=dialog][data-pv-chat-popup]:not(:has(>img)) :is(input:not([type=checkbox]):not([type=radio]),textarea,select) { background:#12090c!important; border-color:#8d4038!important; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [role=dialog][data-pv-chat-popup]:not(:has(>img)) h2::before { color:var(--pv-access-accent); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is([data-question-key],[data-plan-review-key]) > section { background:#210a0f!important; color:var(--pv-text); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-part=center],[data-pv-chat-popup]:not([data-menu-backing]):not(:has(>img))) ::selection { background:#8d403899; color:#fff4e4; }
+body[data-pv-deepsea][data-pv-crt=on]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-part=center],[data-pv-chat-popup]:not([data-menu-backing]):not(:has(>img))) { --pv-access-accent:#ffe0a4; --pv-access-muted:#e7c384; --pv-text:#fff4e4; text-shadow:0 0 1px currentColor,0 0 3.5px #e7c38455; }
+body[data-pv-deepsea][data-pv-crt=on]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-part=center],[data-pv-chat-popup]:not([data-menu-backing]):not(:has(>img))) :is(button,input,textarea,select,pre,code,[contenteditable=true],:is(.yhfFVG_placeholder,.RlGAzG_placeholder),.uV2eYG_placeholder) { text-shadow:0 0 1px currentColor,0 0 3.5px #e7c38455; }
+body[data-pv-deepsea][data-pv-crt=on]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-part=center],[data-pv-chat-popup]:not([data-menu-backing]):not(:has(>img))) :is(svg,canvas) { filter:brightness(1.18) saturate(1.06) drop-shadow(0 0 1.5px #e7c38499); }
+body[data-pv-deepsea][data-pv-crt=on]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) :is([data-pv-chat-popup]:not([data-menu-backing]):not(:has(>img))) { box-shadow:0 0 2.5px #ff3b3066,inset 0 0 2px #e5484d33!important; }
+
+/* Collapsed-sidebar identity strip follows the conversation palette. */
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] .pv-presence { background:linear-gradient(90deg,#210f14,#12090c); border-color:#60302f; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] .pv-avatar { background:#210f14; border-color:#ff3b30; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] .pv-identity>strong { color:var(--pv-text); }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is(.pv-identity>span,.pv-model,.pv-signal) { color:var(--pv-access-accent); }
+body[data-pv-deepsea][data-pv-crt=on]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] .pv-presence { box-shadow:0 0 2.5px #ff3b3066,inset 0 0 2px #e5484d33!important; }
+body[data-pv-deepsea][data-pv-crt=on]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] .pv-avatar { filter:brightness(1.18) contrast(1.06) saturate(1.06) drop-shadow(0 0 2.5px #e7c38466); }
+/* Full access retains red borders while a question or plan choice is pending. */
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i]))[data-pv-state=等待] :is([data-pv-part=center],:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) { --pv-wait-border:#ff3b30; --pv-wait-glow:#ff3b3066; --pv-wait-inset:#e5484d33; }
+body[data-pv-deepsea]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i])) [data-pv-part=center] :is([data-question-key],[data-plan-review-key]) > section { border-color:#ff3b30!important; }
+body[data-pv-deepsea][data-pv-crt=on]:has(button:is([aria-label^="访问模式"][aria-label*="完全权限"],[aria-label*="access mode" i][aria-label*="full access" i]))[data-pv-state=等待] :is(:is(.yhfFVG_card,.RlGAzG_card),.uV2eYG_card) { box-shadow:inset 0 0 0 1px var(--pv-wait-border),0 0 2.5px var(--pv-wait-glow),inset 0 0 2px var(--pv-wait-inset)!important; }
