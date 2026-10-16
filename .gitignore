@@ -12,6 +12,5 @@ Thumbs.db
 output/local-install/
 CHANGELOG.md
 DEVLOG.md
-docs/devlog/
 assets/*-prompt.json
 assets/*-prompts.json
