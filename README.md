@@ -4,7 +4,9 @@
 
 这是一款非官方终端风格皮肤，包含角色欢迎画面、实时会话状态和可选 CRT 动效。
 
-适配 **DSH Desktop 0.2.0-rc.2（macOS / Windows）**。TUI 指终端风格的桌面界面；本皮肤运行于 DSH 的桌面前端。
+面向 **DSH Desktop（macOS / Windows）**，初始适配版本为 **0.2.0-rc.2**。当前源码允许安装到 `>=0.2.0-0 <1.0.0-0`，即从 0.2.0 起的 0.x 系列（含 RC 等预发布版）。这是宽松的安装兼容范围，不代表每个版本都经过测试；遇到界面或功能兼容问题时再跟进适配。TUI 指终端风格的桌面界面；本皮肤运行于 DSH 的桌面前端。
+
+**发布状态：**已发布的 npm `0.2.58` 仍要求 DSH `0.2.0-rc.2`；上述兼容范围将在后续 npm 版本发布后生效。
 
 ![深海终端新会话页面：角色欢迎画面与终端风格界面](docs/screenshots/deepsea-desktop.png)
 
@@ -46,8 +48,10 @@
 等待管理器安装完成，再次点击「添加插件」，在同一个输入框中粘贴下面这一行，然后点击**「安装」**。这是 npm 包名安装，无需访问 GitHub、安装 Git 或手动编译：
 
 ```text
-dsh-skin-deepsea-tui@0.2.58
+dsh-skin-deepsea-tui@latest
 ```
+
+`latest` 会安装 npm 上该标签当前指向的已发布版本；尚在发布验证中的版本不会提前生效。截图中的固定版本号仅作示例，实际安装请复制上面的包名。
 
 ![在包名或地址中填写深海终端皮肤包名，然后点击安装](docs/screenshots/install-03-skin-annotated.png)
 
@@ -81,7 +85,7 @@ dsh-skin-deepsea-tui@0.2.58
 
 ```bash
 dsh plugin --profile desktop add '@smalltailqwq/dsh-client-ui-skin-deep-whale-manager@0.1.6' --ignore-scripts
-dsh plugin --profile desktop add 'dsh-skin-deepsea-tui@0.2.58' --ignore-scripts
+dsh plugin --profile desktop add 'dsh-skin-deepsea-tui@latest' --ignore-scripts
 ```
 
 如需通过 GitHub 安装，仍可在「添加插件」中填写仓库链接 `https://github.com/KeithTMaxwell/dsh-skin-deepsea-tui`，此方式需要访问 GitHub。
