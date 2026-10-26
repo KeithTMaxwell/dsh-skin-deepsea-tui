@@ -47,7 +47,7 @@
   },
   "scripts": {
     "build": "node build.mjs",
-    "test": "node test.mjs && node test.mjs --windows && node test-persona.mjs && node test-welcome-story.mjs && node test-activity-wave.mjs && node test-popup-scope.mjs",
+    "test": "node test.mjs && node test.mjs --windows && node test.mjs --current && node test.mjs --current --late-styles && node test-class-compat.mjs && node test-persona.mjs && node test-welcome-story.mjs && node test-activity-wave.mjs && node test-popup-scope.mjs",
     "preview": "node serve-preview.mjs",
     "prepack": "npm run build && npm test"
   },

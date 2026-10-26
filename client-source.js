@@ -2,15 +2,12 @@ export function apply(ctx) {
   ctx.effect(() => {
     const body = document.body;
     const chatPopups = createChatPopupScope(document);
-    const windowsSelector = selector => selector.replace(/\.([\w-]+)_([A-Za-z][\w-]*)/g,
-      (match, prefix, name) => CLASS_ALIASES[prefix] ? `.${CLASS_ALIASES[prefix]}_${name}` : match);
-    const query = selector => document.querySelector(selector) ?? document.querySelector(windowsSelector(selector));
-    const queryAll = selector => [...new Set([
-      ...document.querySelectorAll(selector), ...document.querySelectorAll(windowsSelector(selector)),
-    ])];
+    const compatibility = createClassCompatibility(document, CLASS_ALIASES);
+    const { query, queryAll } = compatibility;
+    compatibility.refresh();
     const style = document.createElement('style');
     style.dataset.plugin = 'dsh-skin-deepsea-tui';
-    style.textContent = THEME_CSS;
+    style.textContent = compatibility.selector(THEME_CSS);
     const node = (tag, cls, html = '') => {
       const el = document.createElement(tag); el.className = cls; el.innerHTML = html; return el;
     };
@@ -88,7 +85,7 @@ export function apply(ctx) {
       }
     }
     const onNewSession = event => {
-      if (event.target.closest?.('._3WPZCG_newSession, [aria-label="新建会话"], [title="新建会话"]')) newWelcome = true;
+      if (compatibility.closest(event.target, '._3WPZCG_newSession, [aria-label="新建会话"], [title="新建会话"]')) newWelcome = true;
     };
     const welcomeFields = ['.pv-stage-label', '.pv-greeting', 'p', 'small', '.pv-start-hints>span:first-child', '.pv-start-hints>span:last-child'];
     const welcomeNodes = welcomeFields.map(selector => stage.querySelector(selector));
@@ -516,8 +513,9 @@ export function apply(ctx) {
       else if (!parent) el.remove();
     }
     function sync() {
-      chatPopups.sync();
       if (!active) return;
+      if (compatibility.refresh()) style.textContent = compatibility.selector(THEME_CSS);
+      chatPopups.sync();
       for (const [part, selector] of Object.entries(parts)) for (const el of queryAll(selector)) {
         if ((part === 'rightbar' || part === 'sidebar') && el.getBoundingClientRect().width < 20) {
           if (marked.has(el)) { const old = marked.get(el); if (old === null) el.removeAttribute('data-pv-part'); else el.setAttribute('data-pv-part', old); marked.delete(el); }
@@ -610,6 +608,8 @@ export function apply(ctx) {
         chatPopups.start();
         observer = new MutationObserver(queueSync);
         observer.observe(body, { subtree: true, childList: true });
+        // Plugin styles may arrive after the skin or be replaced during reload.
+        observer.observe(document.head, { subtree: true, childList: true, characterData: true });
         resizeObserver = new ResizeObserver(queueSync);
         body.addEventListener('transitionend', queueSync);
         body.addEventListener('click', onNewSession, true);

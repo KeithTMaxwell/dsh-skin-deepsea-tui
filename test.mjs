@@ -2,9 +2,18 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import { terminalScene, transitionTerminalArt } from './terminal-scene.js';
+import { createClassCompatibility } from './class-compat.js';
 const windowsBuild = process.argv.includes('--windows');
+const currentBuild = process.argv.includes('--current');
+const lateStyles = process.argv.includes('--late-styles');
+const mutationObservers = [];
+const currentModules = JSON.parse(fs.readFileSync(new URL('test/fixtures/dsh-0.2.1-rc.3-classes.json', import.meta.url), 'utf8')).modules;
+const hostStyles = new Map(Object.entries(currentModules).map(([id, tokens]) =>
+  [`style[data-plugin-css="${id}"]`, { textContent: tokens.map(token => `.${token}{}`).join('') }]));
+const hostClasses = createClassCompatibility({ querySelector: selector => hostStyles.get(selector) });
+hostClasses.refresh();
 const aliases = JSON.parse(fs.readFileSync(new URL('class-aliases.json', import.meta.url), 'utf8'));
-const nativeSelector = selector => windowsBuild ? selector.replace(/\.([\w-]+)_([A-Za-z][\w-]*)/g,
+const nativeSelector = selector => currentBuild ? hostClasses.selector(selector) : windowsBuild ? selector.replace(/\.([\w-]+)_([A-Za-z][\w-]*)/g,
   (match, prefix, name) => aliases[prefix] ? `.${aliases[prefix]}_${name}` : match) : selector;
 class NativeFixtures extends Map {
   set(selector, value) { return super.set(nativeSelector(selector), value); }
@@ -40,6 +49,7 @@ frame.getBoundingClientRect=()=>({left:0,top:0,right:1280,bottom:820,width:1280}
 sidebar.getBoundingClientRect=()=>({left:12,top:32,right:198,bottom:774,width:186});
 rightbar.getBoundingClientRect=()=>({left:712,top:32,right:1268,bottom:774,width:556});
 const fixtures=new NativeFixtures([['._6Qf49G_frame',frame],['._6Qf49G_centerCol',center],['[data-pv-part=sidebar]',sidebar],['[data-pv-part=rightbar]',rightbar]]);
+if (currentBuild && !lateStyles) for (const [selector, style] of hostStyles) fixtures.set(selector, style);
 const brandSeat=new Element(), conversation=new Element(), heroSeat=new Element();
 for (const el of [brandSeat,conversation,heroSeat]) el.isConnected=true;
 fixtures.set('._3WPZCG_brandIdentity',brandSeat);
@@ -64,8 +74,18 @@ const personaCalls=[]; let personaFailure;
 const document={body,head,hidden:false,createElement:()=>{const e=new Element();elements.push(e);return e;},querySelector:k=>fixtures.get(k)??null,querySelectorAll:k=>fixtures.has(k)?[fixtures.get(k)]:[]};
 document.addEventListener=(k,f)=>documentListeners.set(k,f);
 document.removeEventListener=k=>documentListeners.delete(k);
-vm.runInNewContext(fs.readFileSync(new URL('lib/client.js',import.meta.url),'utf8'),{Math:testMath,Date:TestDate,window,document,StorageEvent:class{constructor(type,x){this.type=type;Object.assign(this,x);}},CustomEvent:class{constructor(type,x){this.type=type;Object.assign(this,x);}},MutationObserver:class{observe(){}disconnect(){}},ResizeObserver:class{constructor(f){resized=f;}observe(){}unobserve(){}disconnect(){resizeDisposed=true;}},requestAnimationFrame:f=>{const id=++frameId; animation=()=>{frames.delete(id);f();};frames.set(id,animation);return id;},cancelAnimationFrame:id=>frames.delete(id),setTimeout:(callback,delay)=>{const id=++timerId;timeouts.set(id,{callback,delay});return id;},clearTimeout:id=>timeouts.delete(id),setInterval:f=>{timers.set(++timerId,f);return timerId;},clearInterval:id=>timers.delete(id)});
+vm.runInNewContext(fs.readFileSync(new URL('lib/client.js',import.meta.url),'utf8'),{Math:testMath,Date:TestDate,window,document,StorageEvent:class{constructor(type,x){this.type=type;Object.assign(this,x);}},CustomEvent:class{constructor(type,x){this.type=type;Object.assign(this,x);}},MutationObserver:class{constructor(callback){this.callback=callback;this.targets=[];mutationObservers.push(this);}observe(target){this.targets.push(target);}disconnect(){}},ResizeObserver:class{constructor(f){resized=f;}observe(){}unobserve(){}disconnect(){resizeDisposed=true;}},requestAnimationFrame:f=>{const id=++frameId; animation=()=>{frames.delete(id);f();};frames.set(id,animation);return id;},cancelAnimationFrame:id=>frames.delete(id),setTimeout:(callback,delay)=>{const id=++timerId;timeouts.set(id,{callback,delay});return id;},clearTimeout:id=>timeouts.delete(id),setInterval:f=>{timers.set(++timerId,f);return timerId;},clearInterval:id=>timers.delete(id)});
 factory().apply({effect:f=>cleanup=f(),get:k=>k==='uiSession'?{current:{getSnapshot:()=>{if(disconnected)throw Error('offline');return current;}},sessionStatus:{getSnapshot:()=>new Map([['test-session',fact]])}}:k==='connection'?{rpc:{call:async(channel,endpoint,payload)=>{if(endpoint==='pv-deepsea-persona'){personaCalls.push(payload);if(personaFailure)throw new Error(personaFailure);}return {ok:true,value:{time:Date.now(),samples:[{time:Date.now(),percent:7}]}};}}}:undefined});
+if (currentBuild) {
+  const observer = mutationObservers.find(observer => observer.targets.includes(head));
+  assert.ok(observer, 'observe head so late/replaced host styles refresh the skin');
+  if (lateStyles) {
+    assert.equal(elements.find(e => e.className === 'pv-brand').isConnected, false);
+    for (const [selector, style] of hostStyles) fixtures.set(selector, style);
+    observer.callback(); animation();
+    assert.ok(elements.find(e => e.dataset.plugin === 'dsh-skin-deepsea-tui').textContent.includes('.JZLxKW_card'), 'late styles update CSS as well as DOM queries');
+  }
+}
 assert.equal(body.getAttribute('data-pv-state'),'就绪'); assert.equal(timers.size,2);
 assert.equal(frame.getAttribute('data-pv-part'),'frame');
 assert.equal(center.getAttribute('data-pv-part'),'center');
@@ -671,4 +691,4 @@ let hostCleanup, route, sampler, stopped=false, unregistered=false, used=0, cloc
 const host=fs.readFileSync(new URL('lib/index.js',import.meta.url),'utf8').replace(/import .*persona.js';\r?\n/, '').replaceAll('export ','')+'\napply(ctx);';
 vm.runInNewContext(host,{installPersona:()=>{},ctx:{effect:f=>hostCleanup=f(),connection:{fetch:{register:r=>{route=r;return()=>{unregistered=true;};}}}},process:{cpuUsage:()=>({user:(used+=1000),system:0}),hrtime:{bigint:()=>clock+=200000000n}},setInterval:f=>{sampler=f;return {unref(){}};},clearInterval:()=>{stopped=true;},Response,Date});
 sampler();const response=await route.fetch({json:async()=>({rpcId:'sample-test'})});const value=await response.json();assert.equal(value.rpcId,'sample-test');assert.equal(value.result.ok,true);assert.equal(value.result.value.samples.length,1);assert.equal(value.result.value.samples[0].percent,.5);hostCleanup();assert.equal(stopped,true);assert.equal(unregistered,true);
-console.log(`PASS (${windowsBuild ? 'Windows' : 'macOS'} selectors): native layout attachment and cleanup; three FX phases, idle/wait exit, reduced motion and background pause; sidebar controls and resize; real status and hidden-wave CPU; seven options; backend metrics disposal.`);
+console.log(`PASS (${currentBuild ? (lateStyles ? 'DSH 0.2.1-rc.3 late styles' : 'DSH 0.2.1-rc.3') : windowsBuild ? 'Windows' : 'macOS'} selectors): native layout attachment and cleanup; three FX phases, idle/wait exit, reduced motion and background pause; sidebar controls and resize; real status and hidden-wave CPU; seven options; backend metrics disposal.`);
