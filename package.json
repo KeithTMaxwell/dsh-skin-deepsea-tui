@@ -1,6 +1,6 @@
 {
   "name": "dsh-skin-deepsea-tui",
-  "version": "0.2.59",
+  "version": "0.2.60",
   "description": "深海终端：角色栏、终端窗口框线、蓝色消息卡片、实时 CPU 波形和可选 CRT 动效。",
   "type": "module",
   "main": "lib/index.js",
